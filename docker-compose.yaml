@@ -1,0 +1,24 @@
+db:
+  container_name: ergastdb
+  build: ergastdb
+  environment:
+    MYSQL_ROOT_PASSWORD: f1
+    MYSQL_DATABASE: ergastdb
+  expose:
+    - "3306"
+
+"01":
+  container_name: ergast01
+  build: webroot
+  ports:
+    - '8001:80'
+  links:
+    - db:ergastdb
+
+"02":
+  container_name: ergast02
+  build: webroot
+  ports:
+    - '8002:80'
+  links:
+    - db:ergastdb
